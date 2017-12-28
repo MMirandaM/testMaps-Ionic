@@ -3,12 +3,21 @@
     <ion-title>
       Ionic Blank
     </ion-title>
+    <ion-buttons end>
+    	<button ion-button (click)="addMarker()">
+    		<ion-icon name="add"></ion-icon>
+    		Add Marker
+    	</button>
+      <button (click)="addPlace()">
+        <ion-icon name="add"></ion-icon>
+        Login
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <div #map id="map">
+  	
+  </div>
 </ion-content>
