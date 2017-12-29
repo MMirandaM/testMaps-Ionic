@@ -14,12 +14,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'list-marker.html',
 })
 export class ListMarkerPage {
+  places:any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  	this.places = navParams.get('places');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ListMarkerPage');
+    console.log(this.places);
   }
 
 }

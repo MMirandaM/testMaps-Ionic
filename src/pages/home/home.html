@@ -1,18 +1,15 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-    <ion-buttons end>
+    <ion-buttons>
       <button ion-button (click)="addMarker()">
         <ion-icon name="add"></ion-icon>
         Add Marker
       </button>
-    </ion-buttons>
-    <ion-buttons end>
-      <button ion-button (click)="addMarker()">
-        <ion-icon name="add"></ion-icon>
+      </ion-buttons>
+      <ion-buttons end>
+      <button ion-button icon-right (click)="goToPageListMarker()">
         List Markers
+        <ion-icon name="arrow-dropright-circle"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>

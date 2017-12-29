@@ -9,11 +9,13 @@ import { HomePage } from '../pages/home/home';
 
 import { Geolocation } from '@ionic-native/geolocation';
 import { IonicStorageModule } from '@ionic/storage';
+import { ListMarkerPage } from '../pages/list-marker/list-marker'
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    ListMarkerPage
   ],
   imports: [
     BrowserModule,
@@ -23,7 +25,8 @@ import { IonicStorageModule } from '@ionic/storage';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    ListMarkerPage
   ],
   providers: [
     StatusBar,

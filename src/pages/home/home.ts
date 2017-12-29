@@ -1,8 +1,10 @@
+
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {Geolocation} from '@ionic-native/geolocation';
 import { AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { ListMarkerPage } from '../list-marker/list-marker'
 
 declare var google;
 
@@ -83,25 +85,25 @@ export class HomePage {
   getDayWeek(day:number){
     switch (day) {
       case 1:
-        return 'Domingo'
+        return 'Domingo';
         break;
       case 2:
-        return 'Segunda'
+        return 'Segunda';
         break;
       case 3:
-        return 'Terça'
+        return 'Terça';
         break;
       case 4:
-        return 'Quarta'
+        return 'Quarta';
         break;
       case 5:
-        return 'Quinta'
+        return 'Quinta';
         break;
       case 6:
-        return 'Sexta'
+        return 'Sexta';
         break;
       case 7:
-        return 'Sabado'
+        return 'Sabado';  
         break;
     }
   }
@@ -199,5 +201,7 @@ export class HomePage {
     create.present();
   }
 
-
+  goToPageListMarker(){
+    this.navCtrl.push(ListMarkerPage, {places:this.places});
+  }
 }
