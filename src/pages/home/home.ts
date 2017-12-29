@@ -117,7 +117,7 @@ export class HomePage {
     this.place.descricao = description;
     this.place.latitude = this.lat;
     this.place.longitude = this.lng;
-    this.place.data = day_week + ' ' + today.getDate() + '/' + today.getMonth() + '/' + today.getYear() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    this.place.data = day_week + ' ' + today.getDate().toString() + '/' + today.getMonth().toString() + '/' + today.getYear().toString() + ' ' + today.getHours().toString() + ':' + today.getMinutes().toString() + ':' + today.getSeconds().toString();
 
     this.places.push(this.place);
     console.log(this.places);
