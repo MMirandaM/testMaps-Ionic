@@ -83,29 +83,33 @@ export class HomePage {
   // switch para transforma o dia da semana:
   //   número -> string (1 -> domingo)
   getDayWeek(day:number){
+    let week = "";
+
     switch (day) {
       case 1:
-        return 'Domingo';
+        week = 'Domingo';
         break;
       case 2:
-        return 'Segunda';
+        week = 'Segunda';
         break;
       case 3:
-        return 'Terça';
+        week = 'Terça';
         break;
       case 4:
-        return 'Quarta';
+        week = 'Quarta';
         break;
       case 5:
-        return 'Quinta';
+        week = 'Quinta';
         break;
       case 6:
-        return 'Sexta';
+        week = 'Sexta';
         break;
-      case 7:
-        return 'Sabado';  
+      default:
+        week = 'Sabado';  
         break;
     }
+
+    return week;
   }
 
   // salva os dados capturados pelos Prompt's
@@ -119,7 +123,7 @@ export class HomePage {
     this.place.descricao = description;
     this.place.latitude = this.lat;
     this.place.longitude = this.lng;
-    this.place.data = day_week + ' ' + today.getDate().toString() + '/' + today.getMonth().toString() + '/' + today.getYear().toString() + ' ' + today.getHours().toString() + ':' + today.getMinutes().toString() + ':' + today.getSeconds().toString();
+    this.place.data = day_week + ' ' + today.getDate().toString() + '/' + today.getMonth().toString() + '/' + today.getFullYear().toString() + ' ' + today.getHours().toString() + ':' + today.getMinutes().toString() + ':' + today.getSeconds().toString();
 
     this.places.push(this.place);
     console.log(this.places);
@@ -141,37 +145,7 @@ export class HomePage {
     create.present();
   }
 
-  // Prompt: adiciona a descrição do lugar
-  addDescription(place:string){
-    let create = this.alertCtrl.create({
-      title: 'Informação de Atividade',
-      inputs:[
-      {
-        name: 'description',
-        placeholder: 'O que você está fazendo?'
-      }],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Register',
-          handler: data => {
-           console.log('Registered');
-           this.confirmationAlert(place, data.description);
-          }
-        }
-      ]
-    });
-
-    create.present();
-  }
-
-  // Prompt: adiciona o nome do lugar
+  // Prompt: adiciona o nome do lugar e a descrição
   addPlace() {
     let create = this.alertCtrl.create({
       title: 'Informação do Local',
@@ -179,6 +153,10 @@ export class HomePage {
         {
           name: 'place',
           placeholder: 'Onde você está?'
+        },
+        {
+          name: 'description',
+          placeholder: 'O que você está fazendo?'
         }
       ],
       buttons: [
@@ -193,7 +171,7 @@ export class HomePage {
           text: 'Register',
           handler: data => {
            console.log('Registered');
-           this.addDescription(data.place);
+           this.confirmationAlert(data.place, data.description);
           }
         }
       ]
