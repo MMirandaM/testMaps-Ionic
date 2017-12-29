@@ -23,14 +23,15 @@ export class HomePage {
   place = {
     lugar: "",
     descricao: "",
+    data:"",
     longitude:0,
-    latitude: 0,
-    data: ""
+    latitude: 0
   }
 
   lat: number;
   lng: number;
 
+  // carregar 'googlemaps' na tela
   loadMap(){
   	this.geolocation.getCurrentPosition().then((position) => {
   			//let latLng = new google.maps.LatLng(-3.091584, -60.017973);
@@ -40,7 +41,7 @@ export class HomePage {
   			let mapOption = {
   				center: latLng,
   				zoom: 15,
-  				mapTypeId: google.maps.MapTypeId.ROADMAP
+  				mapTypeId: google.maps.MapTypeId.TERRAIN
   			}
   			this.map = new google.maps.Map(this.mapElement.nativeElement, mapOption);
   		},
@@ -54,10 +55,19 @@ export class HomePage {
   	this.loadMap();
   }
 
+  // ####*** Funções para adicionar marcadores ***###
+
+  // função que chama um Prompt para adicionar
+  //   informações sobre o lugar
   AddInfoWindow(marker){
-    this.addPlace();
+    // AddListener -> gerenciador de eventos
+    // event -> click sobre o marcador
+    google.maps.event.addListener(marker, 'click', () =>{
+      this.addPlace();
+    });
   }
 
+  // adiciona um marcador no centro do mapa
   addMarker(){
   	let marker = new google.maps.Marker({
   		map: this.map,
@@ -68,17 +78,52 @@ export class HomePage {
   	this.AddInfoWindow(marker);
   }
 
+  // switch para transforma o dia da semana:
+  //   número -> string (1 -> domingo)
+  getDayWeek(day:number){
+    switch (day) {
+      case 1:
+        return 'Domingo'
+        break;
+      case 2:
+        return 'Segunda'
+        break;
+      case 3:
+        return 'Terça'
+        break;
+      case 4:
+        return 'Quarta'
+        break;
+      case 5:
+        return 'Quinta'
+        break;
+      case 6:
+        return 'Sexta'
+        break;
+      case 7:
+        return 'Sabado'
+        break;
+    }
+  }
+
+  // salva os dados capturados pelos Prompt's
   saveRegister(place:string, description:string){
+    let today = new Date();
+    let day_week = this.getDayWeek(today.getUTCDay());
+
+    
+
     this.place.lugar = place;
     this.place.descricao = description;
     this.place.latitude = this.lat;
     this.place.longitude = this.lng;
-    this.place.data = new Date(new Date().getTime() + 3600);
+    this.place.data = day_week + ' ' + today.getDate() + '/' + today.getMonth() + '/' + today.getYear() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
 
     this.places.push(this.place);
     console.log(this.places);
   }
 
+  // Prompt: confirma o registro
   confirmationAlert(place:string, description:string){
     let create = this.alertCtrl.create({
       title:'Confirmação',
@@ -94,6 +139,7 @@ export class HomePage {
     create.present();
   }
 
+  // Prompt: adiciona a descrição do lugar
   addDescription(place:string){
     let create = this.alertCtrl.create({
       title: 'Informação de Atividade',
@@ -122,6 +168,8 @@ export class HomePage {
 
     create.present();
   }
+
+  // Prompt: adiciona o nome do lugar
   addPlace() {
     let create = this.alertCtrl.create({
       title: 'Informação do Local',
@@ -150,4 +198,6 @@ export class HomePage {
     });
     create.present();
   }
+
+
 }
