@@ -15,11 +15,12 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'list-marker.html',
 })
 export class ListMarkerPage {
-  places:any = [];
+  places: Array = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
-  	this.storage.get('places').then((val) => {
-      console.log(val);
+  	this.storage.get('places').then((data) => {
+      console.log(data);
+      this.places = data;
     });
 
   }

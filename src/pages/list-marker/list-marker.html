@@ -5,14 +5,18 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>List of Marker</ion-title>
-  </ion-navbar>
-
+	<ion-navbar>
+		<ion-title>List of Marker</ion-title>
+	</ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-
+	<ion-card>
+		<ion-list>
+			<button ion-item  *ngFor="let local of places">
+				{{ local.place }}
+				<ion-icon name="arrow-forward" item-right></ion-icon>
+			</button>
+		</ion-list>
+	</ion-card>
 </ion-content>
