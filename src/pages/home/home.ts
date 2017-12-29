@@ -19,15 +19,16 @@ export class HomePage {
   constructor(public navCtrl: NavController, public geolocation: Geolocation, private alertCtrl: AlertController, public storage: Storage) {
   }
 
-  places:any = [];
+  places:Array<Place> = [];
+  local: Place;
 
-  place = {
-    lugar: "",
-    descricao: "",
-    data:"",
-    longitude:0,
-    latitude: 0
-  }
+  // place = {
+  //   lugar: "",
+  //   descricao: "",
+  //   data:"",
+  //   longitude:0,
+  //   latitude: 0
+  // }
 
   lat: number;
   lng: number;
@@ -50,6 +51,8 @@ export class HomePage {
   			console.log(err);
   		}
   		);
+
+    console.log(this.t);
   	}
 
   ionViewDidLoad(){
@@ -81,7 +84,9 @@ export class HomePage {
 
   // switch para transforma o dia da semana:
   //   número -> string (1 -> domingo)
-  getDayWeek(day:number){
+  getDayWeek(){
+    let today = new Date();
+    let day = today.getUTCDay();
     let week = "";
 
     switch (day) {
@@ -108,25 +113,26 @@ export class HomePage {
         break;
     }
 
-    return week;
+    return week + ' ' + today.getDate().toString() + '/' + today.getMonth().toString() + '/' + today.getFullYear().toString() + ' ' + today.getHours().toString() + ':' + today.getMinutes().toString() + ':' + today.getSeconds().toString();;
   }
 
   // salva os dados capturados pelos Prompt's
   saveRegister(place:string, description:string){
-    let today = new Date();
-    let day_week = this.getDayWeek(today.getUTCDay());
+    let date = this.getDayWeek();
 
+    this.local = new Place();
     
+    this.local.place = place;
+    this.local.description = description;
+    this.local.date = date;
+    this.local.latitute = this.lat;
+    this.local.longitude = this.lng;
 
-    this.place.lugar = place;
-    this.place.descricao = description;
-    this.place.latitude = this.lat;
-    this.place.longitude = this.lng;
-    this.place.data = day_week + ' ' + today.getDate().toString() + '/' + today.getMonth().toString() + '/' + today.getFullYear().toString() + ' ' + today.getHours().toString() + ':' + today.getMinutes().toString() + ':' + today.getSeconds().toString();
-
-    this.places.push(this.place);
-    this.storage.set('places', this.places);
+    console.log(this.local);
+    this.places.push(this.local);
     console.log(this.places);
+    
+    this.storage.set('places', this.places);
   }
 
   // Prompt: confirma o registro
@@ -182,4 +188,12 @@ export class HomePage {
   goToPageListMarker(){
     this.navCtrl.push(ListMarkerPage, {places:this.places});
   }
+}
+
+export class Place{
+  place: string;
+  description: string;
+  date: string;
+  latitude: number;
+  longitude: number;
 }
