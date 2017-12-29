@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the ListMarkerPage page.
@@ -16,12 +17,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class ListMarkerPage {
   places:any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  	this.places = navParams.get('places');
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
+  	this.storage.get('places').then((val) => {
+      console.log(val);
+    });
+
   }
 
   ionViewDidLoad() {
-    console.log(this.places);
+    //console.log(this.places);
   }
 
 }

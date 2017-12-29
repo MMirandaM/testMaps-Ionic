@@ -16,8 +16,7 @@ export class HomePage {
   @ViewChild('map') mapElement: ElementRef;
   map:any;
 
-  constructor(public navCtrl: NavController, public geolocation: Geolocation, private alertCtrl: AlertController, private storage: Storage) {
-
+  constructor(public navCtrl: NavController, public geolocation: Geolocation, private alertCtrl: AlertController, public storage: Storage) {
   }
 
   places:any = [];
@@ -126,6 +125,7 @@ export class HomePage {
     this.place.data = day_week + ' ' + today.getDate().toString() + '/' + today.getMonth().toString() + '/' + today.getFullYear().toString() + ' ' + today.getHours().toString() + ':' + today.getMinutes().toString() + ':' + today.getSeconds().toString();
 
     this.places.push(this.place);
+    this.storage.set('places', this.places);
     console.log(this.places);
   }
 
