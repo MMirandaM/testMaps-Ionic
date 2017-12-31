@@ -21,43 +21,40 @@ export class MarkerDetailPage {
   @ViewChild('map') mapElement: ElementRef;
   map:any;
 
-  places:Array<any> = [];
-  place:string = "";
+  place:string;
+  description:string;
+  date:string;
+  lat:number;
+  lng:number; 
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, private storage: Storage, public geolocation: Geolocation) {
-  	this.place = navParams.get('data');
+  	this.place = navParams.get('place');
+  	this.description = navParams.get('description');
+  	this.date = navParams.get('date');
+  	this.lat = navParams.get('latitude');
+  	this.lng = navParams.get('longitude');
   }
 
   loadMap(){
-  	console.log('miranda');
-  	this.geolocation.getCurrentPosition().then((position) => {
-  			let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-  			let mapOption = {
-  				center: latLng,
-  				zoom: 15,
-  				mapTypeId: google.maps.MapTypeId.TERRAIN
-  			}
-  			console.log('passou miranda ');
-  			this.map = new google.maps.Map(this.mapElement.nativeElement, mapOption);
-  			console.log('passou miranda ');
-  		},
-  		(err) => {
-  			console.log('erro miranda');
-  			console.log(err);
-  		}
-  		);
-  	console.log('miranda');
+  	let latLng = new google.maps.LatLng(this.lat, this.lng);
+  	let mapOption = {
+  		center: latLng,
+  		zoom: 15,
+  		mapTypeId: google.maps.MapTypeId.TERRAIN
   	}
+  	this.map = new google.maps.Map(this.mapElement.nativeElement, mapOption);
+
+  	let marker = new google.maps.Marker({
+  		map: this.map,
+  		animation: google.maps.Animation.DROP,
+  		position: this.map.getCenter()
+  	});
+  }
 
   ionViewDidLoad() {
     this.loadMap();
-    this.storage.get('places').then((data) => {
-      for (var i in data) {
-      	this.places.push(data[i]);
-      }
-    });
-    
   }
-
+  
   goBack(){
   	this.viewCtrl.dismiss();
   }

@@ -9,33 +9,12 @@
 <ion-content class="main-view">
   <div class="overlay" (click)="goBack()"></div>
   <div class="modal_content">
-  	<div><h2>Welcome to Ionic! {{ place }} </h2></div>
-  	oi
+  	<div><h2>Informações Detalhadas</h2></div>
+  	<div #map id="map"></div>
   	<ion-scroll scrollY="true" class="scroll_content">
-  		<p>
-  			Matheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada Matos
-  		</p>
-  		<p>
-  			Matheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada Matos
-  		</p>
-  		<p>
-        Matheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada Matos
-      </p>
-      <p>
-        Matheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada Matos
-      </p>
-      <p>
-        Matheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada Matos
-      </p>
-      <p>
-        Matheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada Matos
-      </p>
-      <p>
-        Matheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada Matos
-      </p>
-      <p>
-        Matheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada MatosMatheus Mirada Matos
-      </p>
+  		<p style="margin-top: 30px;"> Lugar: {{ place }}</p>
+      <p> Descrição: {{ description }}</p>
+      <p> Data: {{ date }}</p>
   	</ion-scroll>
   </div>
 </ion-content>

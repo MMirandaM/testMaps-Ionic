@@ -1,9 +1,4 @@
 page-marker-detail {
-	// #btnClose{
-	// 	background: transparent;
-	// 	color: #478aff;
-	// }
-
 	.main-view{
 	    background: transparent;
 	  }
@@ -18,7 +13,7 @@ page-marker-detail {
 	}
 	.modal_content {
 	  position: absolute;
-	  top: 20%;
+	  top: 15%;
 	  left: 0;
 	  right: 0;
 	  width: 100%;
@@ -31,18 +26,21 @@ page-marker-detail {
 	}
 	.scroll_content {
 	  position: absolute;
-	  top: 40%;
+	  top: 70%;
 	  left: 0;
 	  right: 0;
 	  width: 100%;
-	  height: 50%; // eu mexi aqui e o scrollY rodou todo o conteudo
+	  height: 30%; // eu mexi aqui e o scrollY rodou todo o conteudo
+	  	// a poncentagem é da tela toda, entao esses 30 pcts é o iniciado
+	  	// la no final
 	  color: #333;
+	  background: linear-gradient(to bottom, #fff 0%, #e8e8e8 100%);
 	  border-radius: 10px;
 	  overflow: hidden;
 	}
 
-	  #map{
+	#map{
 		width: 100%;
-		height: 60%;
+		height: 55%;
 	}
 }

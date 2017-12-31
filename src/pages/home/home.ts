@@ -42,7 +42,7 @@ export class HomePage {
   			console.log(err);
   		}
   		);
-  	}
+  }
 
   ionViewDidLoad(){
   	this.loadMap();
