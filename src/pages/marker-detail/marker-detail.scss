@@ -1,0 +1,48 @@
+page-marker-detail {
+	// #btnClose{
+	// 	background: transparent;
+	// 	color: #478aff;
+	// }
+
+	.main-view{
+	    background: transparent;
+	  }
+	.overlay {
+	  position: fixed;
+	  top: 0;
+	  width: 100%;
+	  height: 100%;
+	  z-index: 1;
+	  opacity: .7;
+	  background-color: #333;
+	}
+	.modal_content {
+	  position: absolute;
+	  top: 20%;
+	  left: 0;
+	  right: 0;
+	  width: 100%;
+	  height: 70%;
+	  z-index: 100;
+	  color: #333;
+	  background: linear-gradient(to bottom, #fff 0%, #e8e8e8 100%);
+	  border-radius: 10px;
+	  overflow: hidden;
+	}
+	.scroll_content {
+	  position: absolute;
+	  top: 40%;
+	  left: 0;
+	  right: 0;
+	  width: 100%;
+	  height: 50%; // eu mexi aqui e o scrollY rodou todo o conteudo
+	  color: #333;
+	  border-radius: 10px;
+	  overflow: hidden;
+	}
+
+	  #map{
+		width: 100%;
+		height: 60%;
+	}
+}

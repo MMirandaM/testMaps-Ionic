@@ -1,8 +1,7 @@
 
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import {Geolocation} from '@ionic-native/geolocation';
-import { AlertController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
 import { Storage } from '@ionic/storage';
 import { ListMarkerPage } from '../list-marker/list-marker'
 
@@ -21,14 +20,6 @@ export class HomePage {
 
   places:Array<Place> = [];
   local: Place;
-
-  // place = {
-  //   lugar: "",
-  //   descricao: "",
-  //   data:"",
-  //   longitude:0,
-  //   latitude: 0
-  // }
 
   lat: number;
   lng: number;
@@ -51,8 +42,6 @@ export class HomePage {
   			console.log(err);
   		}
   		);
-
-    console.log(this.t);
   	}
 
   ionViewDidLoad(){
@@ -125,7 +114,7 @@ export class HomePage {
     this.local.place = place;
     this.local.description = description;
     this.local.date = date;
-    this.local.latitute = this.lat;
+    this.local.latitude = this.lat;
     this.local.longitude = this.lng;
 
     console.log(this.local);
@@ -185,11 +174,13 @@ export class HomePage {
     create.present();
   }
 
+  // ir para a page: list-maker
   goToPageListMarker(){
-    this.navCtrl.push(ListMarkerPage, {places:this.places});
+    this.navCtrl.push(ListMarkerPage);
   }
 }
 
+// class Place
 export class Place{
   place: string;
   description: string;

@@ -13,7 +13,7 @@
 <ion-content padding>
 	<ion-card>
 		<ion-list>
-			<button ion-item  *ngFor="let local of places">
+			<button ion-item  *ngFor="let local of places" (click)="details(local.place)">
 				{{ local.place }}
 				<ion-icon name="arrow-forward" item-right></ion-icon>
 			</button>
