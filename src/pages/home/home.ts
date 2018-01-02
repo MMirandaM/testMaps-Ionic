@@ -71,38 +71,13 @@ export class HomePage {
   	this.AddInfoWindow(marker);
   }
 
-  // switch para transforma o dia da semana:
-  //   número -> string (1 -> domingo)
+  // date formato
   getDayWeek(){
+    let days = ["Domingo","Segunda-Feira","Terça-Feira","Quarta-Feira","Quinta-Feira","Sexta-Feira","Sábado"];
     let today = new Date();
-    let day = today.getUTCDay();
-    let week = "";
+    let day = days[today.getUTCDay()];
 
-    switch (day) {
-      case 1:
-        week = 'Domingo';
-        break;
-      case 2:
-        week = 'Segunda';
-        break;
-      case 3:
-        week = 'Terça';
-        break;
-      case 4:
-        week = 'Quarta';
-        break;
-      case 5:
-        week = 'Quinta';
-        break;
-      case 6:
-        week = 'Sexta';
-        break;
-      default:
-        week = 'Sabado';  
-        break;
-    }
-
-    return week + ' ' + today.getDate().toString() + '/' + today.getMonth().toString() + '/' + today.getFullYear().toString() + ' ' + today.getHours().toString() + ':' + today.getMinutes().toString() + ':' + today.getSeconds().toString();;
+    return day + ' - ' + today.getDate().toString() + '/' + (today.getMonth()+1).toString() + '/' + today.getFullYear().toString() + ' ' + today.getHours().toString() + ':' + today.getMinutes().toString() + ':' + today.getSeconds().toString();;
   }
 
   // salva os dados capturados pelos Prompt's
@@ -130,14 +105,27 @@ export class HomePage {
       title:'Confirmação',
       subTitle: 'Dados redistrados',
       buttons:[{
+        text:'Ok'
+      }]
+    });
+
+    this.saveRegister(place, description);
+    create.present();
+  }
+
+  fillAlert(){
+    let alert = this.alertCtrl.create({
+      title: 'Dados Incompletos',
+      message: 'Preencha todos os campos!',
+      buttons:[{
         text:'Ok',
         handler: data => {
-          this.saveRegister(place, description)
+          this.addPlace();
         }
       }]
     });
 
-    create.present();
+    alert.present();
   }
 
   // Prompt: adiciona o nome do lugar e a descrição
@@ -147,11 +135,11 @@ export class HomePage {
       inputs: [
         {
           name: 'place',
-          placeholder: 'Onde você está?'
+          placeholder: 'Nome do Local'
         },
         {
           name: 'description',
-          placeholder: 'O que você está fazendo?'
+          placeholder: 'Descrição da Atividade'
         }
       ],
       buttons: [
@@ -166,7 +154,11 @@ export class HomePage {
           text: 'Register',
           handler: data => {
            console.log('Registered');
-           this.confirmationAlert(data.place, data.description);
+           if (data.place == "" || data.description == "") { 
+             this.fillAlert();
+           } else {
+             this.confirmationAlert(data.place, data.description);
+           }
           }
         }
       ]

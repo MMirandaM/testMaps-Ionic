@@ -27,7 +27,7 @@ export class MarkerDetailPage {
   lat:number;
   lng:number; 
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, private storage: Storage, public geolocation: Geolocation) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, public geolocation: Geolocation) {
   	this.place = navParams.get('place');
   	this.description = navParams.get('description');
   	this.date = navParams.get('date');
@@ -39,7 +39,7 @@ export class MarkerDetailPage {
   	let latLng = new google.maps.LatLng(this.lat, this.lng);
   	let mapOption = {
   		center: latLng,
-  		zoom: 15,
+  		zoom: 17,
   		mapTypeId: google.maps.MapTypeId.TERRAIN
   	}
   	this.map = new google.maps.Map(this.mapElement.nativeElement, mapOption);
@@ -54,7 +54,7 @@ export class MarkerDetailPage {
   ionViewDidLoad() {
     this.loadMap();
   }
-  
+
   goBack(){
   	this.viewCtrl.dismiss();
   }
