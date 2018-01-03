@@ -2,8 +2,8 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
-import { Storage } from '@ionic/storage';
-import { ListMarkerPage } from '../list-marker/list-marker'
+import { ListMarkerPage } from '../list-marker/list-marker';
+import { ConfigStorageProvider, Place } from '../../providers/config-storage/config-storage';
 
 declare var google;
 
@@ -15,11 +15,8 @@ export class HomePage {
   @ViewChild('map') mapElement: ElementRef;
   map:any;
 
-  constructor(public navCtrl: NavController, public geolocation: Geolocation, private alertCtrl: AlertController, public storage: Storage) {
+  constructor(public navCtrl: NavController, public geolocation: Geolocation, private alertCtrl: AlertController, public placePvdr: ConfigStorageProvider) {
   }
-
-  places:Array<Place> = [];
-  local: Place;
 
   lat: number;
   lng: number;
@@ -83,20 +80,15 @@ export class HomePage {
   // salva os dados capturados pelos Prompt's
   saveRegister(place:string, description:string){
     let date = this.getDayWeek();
-
-    this.local = new Place();
+    let local = new Place();
     
-    this.local.place = place;
-    this.local.description = description;
-    this.local.date = date;
-    this.local.latitude = this.lat;
-    this.local.longitude = this.lng;
+    local.place = place;
+    local.description = description;
+    local.date = date;
+    local.latitude = this.lat;
+    local.longitude = this.lng;
 
-    console.log(this.local);
-    this.places.push(this.local);
-    console.log(this.places);
-    
-    this.storage.set('places', this.places);
+    this.placePvdr.setConfigStorage(local);
   }
 
   // Prompt: confirma o registro
@@ -170,13 +162,4 @@ export class HomePage {
   goToPageListMarker(){
     this.navCtrl.push(ListMarkerPage);
   }
-}
-
-// class Place
-export class Place{
-  place: string;
-  description: string;
-  date: string;
-  latitude: number;
-  longitude: number;
 }

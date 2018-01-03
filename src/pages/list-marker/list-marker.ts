@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
+import { ConfigStorageProvider, Place } from '../../providers/config-storage/config-storage';
 
 /**
  * Generated class for the ListMarkerPage page.
@@ -15,17 +15,14 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'list-marker.html',
 })
 export class ListMarkerPage {
-  places:Array<any> = [];
+  places:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public placePvdr: ConfigStorageProvider, public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
-  	this.storage.get('places').then((data) => {
-      for (var i in data) {
-      	this.places.push(data[i]);
-      }
-    });
+  	this.places = this.placePvdr.getConfigStorage();
+  	console.log(this.places);
   }
 
   details(place:string) {

@@ -10,6 +10,7 @@ import { HomePage } from '../pages/home/home';
 import { Geolocation } from '@ionic-native/geolocation';
 import { IonicStorageModule } from '@ionic/storage';
 import { ListMarkerPage } from '../pages/list-marker/list-marker'
+import { ConfigStorageProvider } from '../providers/config-storage/config-storage';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ListMarkerPage } from '../pages/list-marker/list-marker'
     StatusBar,
     SplashScreen,
     Geolocation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ConfigStorageProvider
   ]
 })
 export class AppModule {}
