@@ -10,13 +10,15 @@ import { HomePage } from '../pages/home/home';
 import { Geolocation } from '@ionic-native/geolocation';
 import { IonicStorageModule } from '@ionic/storage';
 import { ListMarkerPage } from '../pages/list-marker/list-marker'
+import { AddRoutesPage } from '../pages/add-routes/add-routes';
 import { ConfigStorageProvider } from '../providers/config-storage/config-storage';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListMarkerPage
+    ListMarkerPage,
+    AddRoutesPage
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,8 @@ import { ConfigStorageProvider } from '../providers/config-storage/config-storag
   entryComponents: [
     MyApp,
     HomePage,
-    ListMarkerPage
+    ListMarkerPage,
+    AddRoutesPage
   ],
   providers: [
     StatusBar,

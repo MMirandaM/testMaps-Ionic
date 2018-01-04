@@ -11,7 +11,7 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class ConfigStorageProvider {
   private key = 'configPlace';
-  private place:Array<Pllace> = [];
+  private place:Array<Place> = [];
 
 
   constructor(public storage: Storage) {

@@ -28,7 +28,7 @@ export class MarkerDetailPage {
   lng:number; 
   
   constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, public geolocation: Geolocation) {
-  	this.place = navParams.get('place');
+    this.place = navParams.get('place');
   	this.description = navParams.get('description');
   	this.date = navParams.get('date');
   	this.lat = navParams.get('latitude');

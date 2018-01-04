@@ -1,0 +1,13 @@
+page-add-routes {
+	#map{
+		width: 100%;
+		height: 100%;
+	}
+	ion-card{
+		max-height: 30%;
+		max-width: 85%;
+		overflow: scroll;
+	    position: absolute;
+	    z-index: 1;
+	}
+}

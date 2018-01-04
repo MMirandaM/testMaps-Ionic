@@ -15,14 +15,13 @@ import { ConfigStorageProvider, Place } from '../../providers/config-storage/con
   templateUrl: 'list-marker.html',
 })
 export class ListMarkerPage {
-  places:any;
+  places:Array<Place> = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public placePvdr: ConfigStorageProvider, public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
-  	this.places = this.placePvdr.getConfigStorage();
-  	console.log(this.places);
+  	this.places = this.placePvdr.getConfigStorage().reverse();
   }
 
   details(place:string) {

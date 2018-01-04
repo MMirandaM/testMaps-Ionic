@@ -1,8 +1,8 @@
-
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { ListMarkerPage } from '../list-marker/list-marker';
+import { AddRoutesPage } from '../add-routes/add-routes';
 import { ConfigStorageProvider, Place } from '../../providers/config-storage/config-storage';
 
 declare var google;
@@ -31,7 +31,7 @@ export class HomePage {
   			let mapOption = {
   				center: latLng,
   				zoom: 15,
-  				mapTypeId: google.maps.MapTypeId.TERRAIN
+  				mapTypeId: google.maps.MapTypeId.ROADMAP
   			}
   			this.map = new google.maps.Map(this.mapElement.nativeElement, mapOption);
   		},
@@ -42,8 +42,7 @@ export class HomePage {
   }
 
   ionViewDidLoad(){
-  	this.loadMap();
-  }
+  	this.loadMap();  }
 
   // ####*** Funções para adicionar marcadores ***###
 
@@ -95,7 +94,7 @@ export class HomePage {
   confirmationAlert(place:string, description:string){
     let create = this.alertCtrl.create({
       title:'Confirmação',
-      subTitle: 'Dados redistrados',
+      subTitle: 'Dados registrados',
       buttons:[{
         text:'Ok'
       }]
@@ -161,5 +160,9 @@ export class HomePage {
   // ir para a page: list-maker
   goToPageListMarker(){
     this.navCtrl.push(ListMarkerPage);
+  }
+
+  goToPageAddRoutes(){
+    this.navCtrl.push(AddRoutesPage,{lat:this.lat,lng:this.lng});
   }
 }
