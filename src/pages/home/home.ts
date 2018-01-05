@@ -23,48 +23,49 @@ export class HomePage {
 
   // carregar 'googlemaps' na tela
   loadMap(){
-  	this.geolocation.getCurrentPosition().then((position) => {
-  			//let latLng = new google.maps.LatLng(-3.091584, -60.017973);
-        this.lat = position.coords.latitude;
-        this.lng = position.coords.longitude;
-  			let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-  			let mapOption = {
-  				center: latLng,
-  				zoom: 15,
-  				mapTypeId: google.maps.MapTypeId.ROADMAP
-  			}
-  			this.map = new google.maps.Map(this.mapElement.nativeElement, mapOption);
-  		},
-  		(err) => {
-  			console.log(err);
-  		}
-  		);
+    this.geolocation.getCurrentPosition().then((position) => {
+        let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        let mapOption = {
+          center: latLng,
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        this.map = new google.maps.Map(this.mapElement.nativeElement, mapOption);
+      },
+      (err) => {
+        console.log(err);
+      }
+      );
   }
 
   ionViewDidLoad(){
-  	this.loadMap();  }
+    this.loadMap();
+  }
 
   // ####*** Funções para adicionar marcadores ***###
 
   // função que chama um Prompt para adicionar
   //   informações sobre o lugar
   AddInfoWindow(marker){
-    // AddListener -> gerenciador de eventos
-    // event -> click sobre o marcador
     google.maps.event.addListener(marker, 'click', () =>{
+      this.lat = marker.position.lat();
+      this.lng = marker.position.lng();
+
       this.addPlace();
     });
+
   }
 
   // adiciona um marcador no centro do mapa
   addMarker(){
-  	let marker = new google.maps.Marker({
-  		map: this.map,
-  		animation: google.maps.Animation.DROP,
-  		position: this.map.getCenter()
-  	});
+    let marker = new google.maps.Marker({
+      draggable: true,
+      map: this.map,
+      animation: google.maps.Animation.DROP,
+      position: this.map.getCenter()
+    });
 
-  	this.AddInfoWindow(marker);
+    this.AddInfoWindow(marker);
   }
 
   // date formato
@@ -104,6 +105,7 @@ export class HomePage {
     create.present();
   }
 
+  //Prompt: dados incompletos
   fillAlert(){
     let alert = this.alertCtrl.create({
       title: 'Dados Incompletos',
@@ -162,6 +164,7 @@ export class HomePage {
     this.navCtrl.push(ListMarkerPage);
   }
 
+  // ir para a page: add-routes
   goToPageAddRoutes(){
     this.navCtrl.push(AddRoutesPage,{lat:this.lat,lng:this.lng});
   }
