@@ -9,24 +9,43 @@
     <ion-title>Add Routes</ion-title>
   </ion-navbar>
   
-  <ion-item>
+  <!-- <ion-item>
     <ion-label>Origem</ion-label>
-    <ion-select [(ngModel)]="origem" (change)="onChange(origem)">
-      <ion-option *ngFor="let local of places"> {{ local.place }} </ion-option>
+    <ion-select [(ngModel)]="origem" >
+      <ion-option *ngFor="let local of places" [value]="local"> {{ local.place }}</ion-option>
     </ion-select>
   </ion-item>
 
   <ion-item>
     <ion-label>Destino</ion-label>
-    <ion-select>
-      <ion-option *ngFor="let local of places"> {{ local.place }} </ion-option>
+    <ion-select [(ngModel)]="destino">
+      <ion-option *ngFor="let local of places" [value]="local"> {{ local.place }} </ion-option>
     </ion-select>
   </ion-item>
 
   <ion-item>
-  	<button>
-  		Adicionar
-  	</button>
+  	<ion-buttons end>
+      <button ion-button round small (click)="addRouter()">
+        Adicionar
+      </button>
+    </ion-buttons> 
+  </ion-item> -->
+  <ion-item>
+    <ion-label>Inicio</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" min="2017" max="2020-10-31" [(ngModel)]="sDate_inicio"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Fim</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" min="2017" max="2020-10-31" [(ngModel)]="sDate_fim"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-buttons end>
+      <button ion-button round small (click)="addRouter()">
+        Adicionar
+      </button>
+    </ion-buttons> 
   </ion-item>
 </ion-header>
 
