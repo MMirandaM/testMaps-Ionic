@@ -11,6 +11,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { IonicStorageModule } from '@ionic/storage';
 import { ListMarkerPage } from '../pages/list-marker/list-marker'
 import { AddRoutesPage } from '../pages/add-routes/add-routes';
+//import { RouterDetailPage } from '../pages/router-detail/router-detail'
 import { ConfigStorageProvider } from '../providers/config-storage/config-storage';
 
 @NgModule({
