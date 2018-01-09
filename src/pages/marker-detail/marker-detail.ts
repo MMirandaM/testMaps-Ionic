@@ -1,60 +1,64 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation';
 
-/**
- * Generated class for the MarkerDetailPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
- declare var google;
+declare var google;
 
 @IonicPage()
 @Component({
   selector: 'page-marker-detail',
   templateUrl: 'marker-detail.html',
 })
+
+
 export class MarkerDetailPage {
   @ViewChild('map') mapElement: ElementRef;
-  map:any;
-
-  place:string;
-  description:string;
-  date:string;
-  lat:number;
-  lng:number; 
+  
+  map:any;  // contém o mapa - Google Maps
+  place:any;  // contém o local selecionado
   
   constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, public geolocation: Geolocation) {
     this.place = navParams.get('place');
-  	this.description = navParams.get('description');
-  	this.date = navParams.get('date');
-  	this.lat = navParams.get('latitude');
-  	this.lng = navParams.get('longitude');
   }
 
+
+  /*
+    Função de inicialização da page
+      -chamada da função para apresentação do mapa
+  */
+  ionViewDidLoad(){
+    this.loadMap();
+  }
+
+  /*
+    Função onde irá carregar o mapa na page
+  */
   loadMap(){
-  	let latLng = new google.maps.LatLng(this.lat, this.lng);
-  	let mapOption = {
+  	let latLng = new google.maps.LatLng(this.place.latitude, this.place.longitude);
+  	
+    // configurações do mapa
+    let mapOption = {
   		center: latLng,
   		zoom: 17,
   		mapTypeId: google.maps.MapTypeId.TERRAIN
   	}
+
+    // atribui o mapa para variável
   	this.map = new google.maps.Map(this.mapElement.nativeElement, mapOption);
 
-  	let marker = new google.maps.Marker({
+  	// adiciona um marcador no centro do mapa
+    let marker = new google.maps.Marker({
   		map: this.map,
   		animation: google.maps.Animation.DROP,
   		position: this.map.getCenter()
   	});
   }
 
-  ionViewDidLoad() {
-    this.loadMap();
-  }
 
+  /*
+  Função que retorna a page anterior
+  */
   goBack(){
   	this.viewCtrl.dismiss();
   }

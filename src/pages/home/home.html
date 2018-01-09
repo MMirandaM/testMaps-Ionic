@@ -3,17 +3,17 @@
     <ion-buttons>
       <button ion-button (click)="addMarker()">
         <ion-icon name="add"></ion-icon>
-        Add Marker
+        Adicionar Marcador
       </button>
 
       <button ion-button (click)="goToPageAddRoutes()">
         <ion-icon name="add"></ion-icon>
-        Add Router
+        Adicionar Rota
       </button>
     </ion-buttons>
     <ion-buttons end>
         <button ion-button icon-right (click)="goToPageListMarker()">
-        List Markers/Routes
+        Lista
         <ion-icon name="arrow-round-forward"></ion-icon>
         </button>
     </ion-buttons>
@@ -22,4 +22,11 @@
 
 <ion-content padding>
   <div #map id="map"></div>
+  <div id="pos_current">
+    <ion-buttons>
+      <button ion-button small round style="font-size: 10px;" (click)="current_Position()">
+        Posição Atual
+      </button>
+    </ion-buttons>
+  </div>
 </ion-content>
