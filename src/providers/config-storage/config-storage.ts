@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
@@ -10,8 +9,10 @@ import { Storage } from '@ionic/storage';
 */
 @Injectable()
 export class ConfigStorageProvider {
-  private key = 'configPlace';
+  private key_place = 'configPlace';
   private place:Array<Place> = [];
+  private key_rota = 'configRota'
+  private rota:Array<any> = [];
 
 
   constructor(public storage: Storage) {
@@ -19,23 +20,43 @@ export class ConfigStorageProvider {
   }
 
   loadData(){
-  	this.storage.get(this.key).then((data) => {
-  		console.log(data);
-  		for (var i in data) {
-  			this.place.push(data[i]);
-  		}
-  	});
+  	this.storage.get(this.key_place).then((data) => {
+      console.log(data);
+      for (var i in data) {
+        this.place.push(data[i]);
+      }
+    });
+
+    this.storage.get(this.key_rota).then((data) => {
+      console.log(data);
+      for (var i in data) {
+        this.rota.push(data[i]);
+      }
+    });
 
   }
 
-  setConfigStorage(data){
-  	this.place.push(data);
+  setPlaceConfigStorage(data){
+    this.place.push(data);
 
-  	this.storage.set(this.key, this.place);
+    this.storage.set(this.key_place, this.place);
   }
 
-  getConfigStorage(){
-  	return this.place;
+  getPlaceConfigStorage(){
+    return this.place;
+  }
+
+  setRouteConfigStorage(data){
+    console.log(data);
+    this.rota.push(data);
+
+    console.log(this.rota);
+
+    this.storage.set(this.key_rota, this.rota);
+  }
+
+  getRouteConfigStorage(){
+    return this.rota;
   }
 
 }
